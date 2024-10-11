@@ -1,5 +1,6 @@
 package com.Eungbyeonmuga.RookieKBO.domain.score.entity;
 
+import com.Eungbyeonmuga.RookieKBO.domain.GameTeam.entity.HomeAway;
 import com.Eungbyeonmuga.RookieKBO.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +24,4 @@ public class Score extends BaseEntity {
 
     @Column(nullable = false)
     private ScoreType scoreType;
-
-    @Column(nullable = false)
-    private HomeAway homeAway;
 }

@@ -1,8 +1,6 @@
 package com.Eungbyeonmuga.RookieKBO.domain.game.entity;
 
-import com.Eungbyeonmuga.RookieKBO.domain.score.entity.HomeAway;
 import com.Eungbyeonmuga.RookieKBO.domain.score.entity.Score;
-import com.Eungbyeonmuga.RookieKBO.domain.score.entity.ScoreType;
 import com.Eungbyeonmuga.RookieKBO.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;

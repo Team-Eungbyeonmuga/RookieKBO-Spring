@@ -1,4 +1,4 @@
-package com.Eungbyeonmuga.RookieKBO.domain.score.entity;
+package com.Eungbyeonmuga.RookieKBO.domain.GameTeam.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
