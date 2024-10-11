@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgresql:
-    container_name: postgres-RookieKBO-local
+    container_name: postgres-rookiekbo-local
     image: postgres:latest
     ports:
       - ${POSTGRES_OUTER_PORT}:${POSTGRES_INNER_PORT}
@@ -11,19 +11,19 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     networks:
-      RookieKBO_network:
+      rookiekbo_network:
         ipv4_address: ${NETWORK_POSTGRES_IP}
   redis:
-    container_name: redis-RookieKBO-local
+    container_name: redis-rookiekbo-local
     image: redis:latest
     ports:
       - ${REDIS_OUTER_PORT}:${REDIS_INNER_PORT}
     networks:
-      RookieKBO_network:
+      rookiekbo_network:
         ipv4_address: ${NETWORK_REDIS_IP}
 networks:
-  RookieKBO_network:
-    name: RookieKBO-local
+  rookiekbo_network:
+    name: rookiekbo-local
     driver: bridge
     internal: false
     ipam:
