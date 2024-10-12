@@ -39,6 +39,12 @@ dependencies {
 
 	// postgresql
 	runtimeOnly 'org.postgresql:postgresql'
+
+	// OpenFeign -> https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0-Release-Notes
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.1'
+
+	// Jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 }
 
 tasks.named('test') {
