@@ -1,7 +1,6 @@
 package com.Eungbyeonmuga.RookieKBO.domain.score.entity;
 
-import com.Eungbyeonmuga.RookieKBO.domain.GameTeam.entity.HomeAway;
-import com.Eungbyeonmuga.RookieKBO.global.BaseEntity;
+import com.Eungbyeonmuga.RookieKBO.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;

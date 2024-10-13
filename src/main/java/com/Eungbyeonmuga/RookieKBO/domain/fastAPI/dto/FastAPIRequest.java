@@ -14,6 +14,6 @@ public class FastAPIRequest {
     public static class GetMatches {
         private Integer year;
         private Integer month;
-        private String matchType;
+        private String season;
     }
 }

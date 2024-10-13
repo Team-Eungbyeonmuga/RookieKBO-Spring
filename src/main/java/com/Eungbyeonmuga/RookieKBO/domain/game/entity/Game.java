@@ -1,7 +1,7 @@
 package com.Eungbyeonmuga.RookieKBO.domain.game.entity;
 
 import com.Eungbyeonmuga.RookieKBO.domain.score.entity.Score;
-import com.Eungbyeonmuga.RookieKBO.global.BaseEntity;
+import com.Eungbyeonmuga.RookieKBO.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
@@ -31,15 +31,17 @@ public class Game extends BaseEntity {
     @Builder.Default
     private List<Score> AwayScores = new ArrayList<>();
 
-    @Column(nullable = false)
     private Inning inning;
 
     @Column(nullable = false)
     private Season season;
 
-    @Column(nullable = false)
-    private Status status;
+//    @Column(nullable = false)
+//    private Status status;
 
     @Column(nullable = false)
-    private LocalDateTime startTime;
+    private LocalDateTime startDateTime;
+
+    @Column(nullable = false)
+    private String place;
 }
