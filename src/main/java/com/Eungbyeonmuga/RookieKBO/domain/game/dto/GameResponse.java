@@ -3,6 +3,7 @@ package com.Eungbyeonmuga.RookieKBO.domain.game.dto;
 import com.Eungbyeonmuga.RookieKBO.domain.fastAPI.dto.FastAPIResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,13 +13,16 @@ public class GameResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class GetMatchesResponse {
-        private List<FastAPIResponse.MatchInfo> matchInfos;
+    @Builder
+    public static class GetMatches {
+        @JsonProperty("matchInfos")
+        private List<MatchInfo> matchInfos;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
+    @Builder
     public static class MatchInfo {
         @JsonProperty("day")
         private String day;

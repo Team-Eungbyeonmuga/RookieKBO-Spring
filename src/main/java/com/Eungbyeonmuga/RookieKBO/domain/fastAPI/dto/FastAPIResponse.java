@@ -12,7 +12,7 @@ public class FastAPIResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class GetMatchesResponse {
+    public static class GetMatches {
         @JsonProperty("matchInfos")
         private List<MatchInfo> matchInfos;
     }

@@ -20,7 +20,7 @@ import java.util.List;
 
 public interface FastAPIClient {
     @PostMapping(value = "/matches")
-    public List<FastAPIResponse.MatchInfo> getMatches(
+    public FastAPIResponse.GetMatches getMatches(
             @RequestBody FastAPIRequest.GetMatches request
             );
 

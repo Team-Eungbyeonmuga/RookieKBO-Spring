@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface GameService {
     // TODO: Response FastAPI -> GameResponse로 변경하기
-    List<FastAPIResponse.MatchInfo> getMatches(Integer year, Integer month, String matchType);
+    GameResponse.GetMatches getMatches(Integer year, Integer month, String matchType);
 }

@@ -22,7 +22,7 @@ public class GameController {
 
     // TODO: Response FastAPI -> GameResponse로 변경하기
     @PostMapping("/get-matches")
-    public BaseResponse<List<FastAPIResponse.MatchInfo>> getMatches(
+    public BaseResponse<GameResponse.GetMatches> getMatches(
             @RequestBody GameRequest.GetMatches request
             ) {
         return BaseResponse.onSuccess(gameService.getMatches(request.getYear(), request.getMonth(), request.getMatchType()));
