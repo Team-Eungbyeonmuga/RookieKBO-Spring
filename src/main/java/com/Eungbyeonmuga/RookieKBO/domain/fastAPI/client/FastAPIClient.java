@@ -24,9 +24,9 @@ public interface FastAPIClient {
             @RequestBody FastAPIRequest.GetMatches request
             );
 
-//    @PostMapping(value = "/playlist")
-//    public FastAPIResponse.YTMusicApiExportPlaylistResponse exportPlaylist(
-//            @RequestBody YTMusicApiRequest.YTMusicAPiExportPlaylistRequest request
-//    );
+    @PostMapping(value = "/matches/calendar/all-season")
+    public FastAPIResponse.GetMatchSummariesOnCalendar getMatchSummariesOnCalendar(
+            @RequestBody FastAPIRequest.GetMatchSummariesOnCalendar request
+    );
 
 }

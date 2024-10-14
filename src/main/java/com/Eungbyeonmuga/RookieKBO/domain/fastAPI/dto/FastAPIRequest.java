@@ -15,4 +15,13 @@ public class FastAPIRequest {
         private Integer year;
         private Integer month;
     }
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class GetMatchSummariesOnCalendar {
+        private Integer year;
+        private Integer month;
+    }
 }

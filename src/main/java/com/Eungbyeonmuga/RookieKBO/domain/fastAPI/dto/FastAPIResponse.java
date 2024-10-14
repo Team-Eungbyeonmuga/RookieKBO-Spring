@@ -49,5 +49,42 @@ public class FastAPIResponse {
         private String note;
     }
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GetMatchSummariesOnCalendar {
+        @JsonProperty("matchSummariesOnCalendarInRegularSeason")
+        private List<MatchSummaryOnCalendar> matchSummariesOnCalendarInRegularSeason;
+
+        @JsonProperty("matchSummariesOnCalendarInPostSeason")
+        private List<MatchSummaryOnCalendar> matchSummariesOnCalendarInPostSeason;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class MatchSummaryOnCalendar {
+        @JsonProperty("date")
+        private String date;
+
+        @JsonProperty("awayTeam")
+        private String awayTeam;
+
+        @JsonProperty("homeTeam")
+        private String homeTeam;
+
+        @JsonProperty("awayScore")
+        private String awayScore;
+
+        @JsonProperty("homeScore")
+        private String homeScore;
+
+        @JsonProperty("gameStatus")
+        private String gameStatus;
+
+        @JsonProperty("season")
+        private String season;
+    }
+
 
 }

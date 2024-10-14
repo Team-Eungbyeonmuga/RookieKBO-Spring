@@ -23,4 +23,11 @@ public class GameController {
             ) {
         return BaseResponse.onSuccess(gameService.getMatchesByYearAndMonth(request.getYear(), request.getMonth()));
     }
+
+    @PostMapping("/get-matches/calendar")
+    public BaseResponse<GameResponse.GetMatchesByYearAndMonth> getMatchSummariesOnCalendar(
+            @RequestBody GameRequest.GetMatches request
+    ) {
+        return BaseResponse.onSuccess(gameService.getMatchSummariesOnCalendar(request.getYear(), request.getMonth()));
+    }
 }

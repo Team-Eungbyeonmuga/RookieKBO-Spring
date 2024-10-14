@@ -49,7 +49,7 @@ public class GameMapper {
 //    }
 
     public Integer safeParseInt(String value) {
-        if (value == null || value.isEmpty()) {
+        if (value == null || value.equals("-") || value.isEmpty()) {
             return null;  // 혹은 기본값을 반환하거나 적절한 처리를 해줘
         }
         return Integer.parseInt(value);

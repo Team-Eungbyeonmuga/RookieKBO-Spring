@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class GameServiceImpl implements GameService {
     private final GameTeamService gameTeamService;
     private final TeamService teamService;
 
+    // TODO: 코드 리팩토링 필요
     // 우천 취소와 같은 기타 상황을 위한 기본 Game 셋팅
     @Override
     public GameResponse.GetMatchesByYearAndMonth getMatchesByYearAndMonth(Integer year, Integer month) {
@@ -95,6 +98,91 @@ public class GameServiceImpl implements GameService {
 //            return gameMapper.toGetMatches(fastAPIClient.getMatches(getMatchesRequest));
             return null;
         } else {
+            System.out.println("TESTSETSETSET");
+            return null;
+        }
+    }
+
+    // TODO: 코드 리팩토링 필요
+    // 우천 취소와 같은 기타 상황을 위한 기본 Game 셋팅
+    @Override
+    public GameResponse.GetMatchesByYearAndMonth getMatchSummariesOnCalendar(Integer year, Integer month) {
+
+        List<Game> games = gameRepository.findByStartDate(convertToStartDateTime(year, month, 1, 0, 0));
+        FastAPIRequest.GetMatchSummariesOnCalendar getMatchSummariesOnCalendar;
+
+        // 이전에 크롤링되지 않아서 Spring DB에 없을 때
+        if(games.isEmpty()) {
+            getMatchSummariesOnCalendar = FastAPIRequest.GetMatchSummariesOnCalendar
+                    .builder()
+                    .year(year)
+                    .month(month)
+                    .build();
+            // FastAPI 서버에서 클로링 후 Game 생성 및 GameTeam 생성
+            FastAPIResponse.GetMatchSummariesOnCalendar matchSummariesOnCalendar = fastAPIClient.getMatchSummariesOnCalendar(getMatchSummariesOnCalendar);
+            System.out.println(matchSummariesOnCalendar);
+            // 정규 시즌 생성
+            for(FastAPIResponse.MatchSummaryOnCalendar matchSummaryOnCalendar : matchSummariesOnCalendar.getMatchSummariesOnCalendarInRegularSeason()) {
+                System.out.println(matchSummaryOnCalendar);
+
+                String stadium  = teamService.findTeamByName(matchSummaryOnCalendar.getHomeTeam()).getStadium();
+
+                // DateTimeFormatter로 문자열 패턴을 설정
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+                // 문자열을 LocalDate로 파싱
+                LocalDate date = LocalDate.parse(matchSummaryOnCalendar.getDate(), formatter);
+
+                // LocalDate에 시간 정보를 추가하여 LocalDateTime으로 변환
+                LocalDateTime startDate = date.atStartOfDay(); // 자정 시간으로 변환
+
+                Status status = Status.fromKorean(matchSummaryOnCalendar.getGameStatus());
+
+                String note = "-";
+                if (status == Status.CANCEL) {
+                    note = "경기 취소";
+                }
+
+                Game newGame = gameMapper.toNewGame(Season.REGULAR_SEASON, startDate, stadium, matchSummaryOnCalendar.getHomeScore(), matchSummaryOnCalendar.getAwayScore(), status, note);
+                gameRepository.save(newGame);
+                Team homeTeam = teamService.findTeamByName(matchSummaryOnCalendar.getHomeTeam());
+                Team awayTeam = teamService.findTeamByName(matchSummaryOnCalendar.getAwayTeam());
+
+                gameTeamService.createGameTeam(newGame, homeTeam, awayTeam);
+            }
+            // 포스트 시즌 생성
+            for(FastAPIResponse.MatchSummaryOnCalendar matchSummaryOnCalendar : matchSummariesOnCalendar.getMatchSummariesOnCalendarInPostSeason()) {
+                System.out.println(matchSummaryOnCalendar);
+
+                String stadium  = teamService.findTeamByName(matchSummaryOnCalendar.getHomeTeam()).getStadium();
+
+                // DateTimeFormatter로 문자열 패턴을 설정
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+                // 문자열을 LocalDate로 파싱
+                LocalDate date = LocalDate.parse(matchSummaryOnCalendar.getDate(), formatter);
+
+                // LocalDate에 시간 정보를 추가하여 LocalDateTime으로 변환
+                LocalDateTime startDate = date.atStartOfDay(); // 자정 시간으로 변환
+
+                Status status = Status.fromKorean(matchSummaryOnCalendar.getGameStatus());
+
+                String note = "-";
+                if (status == Status.CANCEL) {
+                    note = "경기 취소";
+                }
+
+                Game newGame = gameMapper.toNewGame(Season.POST_SEASON, startDate, stadium, matchSummaryOnCalendar.getHomeScore(), matchSummaryOnCalendar.getAwayScore(), status, note);
+                gameRepository.save(newGame);
+                Team homeTeam = teamService.findTeamByName(matchSummaryOnCalendar.getHomeTeam());
+                Team awayTeam = teamService.findTeamByName(matchSummaryOnCalendar.getAwayTeam());
+
+                gameTeamService.createGameTeam(newGame, homeTeam, awayTeam);
+            }
+//            return gameMapper.toGetMatches(fastAPIClient.getMatches(getMatchesRequest));
+            return null;
+        } else {
+            System.out.println("TESTSETSETSET");
             return null;
         }
     }
