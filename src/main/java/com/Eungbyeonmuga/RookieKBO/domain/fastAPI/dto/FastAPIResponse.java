@@ -13,16 +13,19 @@ public class FastAPIResponse {
     @AllArgsConstructor
     @Data
     public static class GetMatches {
-        @JsonProperty("matchInfos")
-        private List<MatchInfo> matchInfos;
+        @JsonProperty("matchSummariesInRegularSeason")
+        private List<MatchSummary> matchSummariesInRegularSeason;
+
+        @JsonProperty("matchSummariesInPostSeason")
+        private List<MatchSummary> matchSummariesInPostSeason;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class MatchInfo {
-        @JsonProperty("day")
-        private String day;
+    public static class MatchSummary {
+        @JsonProperty("date")
+        private String date;
 
         @JsonProperty("time")
         private String time;

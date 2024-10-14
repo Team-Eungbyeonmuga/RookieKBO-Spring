@@ -1,12 +1,12 @@
 package com.Eungbyeonmuga.RookieKBO.domain.game.dto;
 
-import com.Eungbyeonmuga.RookieKBO.domain.fastAPI.dto.FastAPIResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GameResponse {
@@ -14,21 +14,18 @@ public class GameResponse {
     @AllArgsConstructor
     @Data
     @Builder
-    public static class GetMatches {
+    public static class GetMatchesByYearAndMonth {
         @JsonProperty("matchInfos")
-        private List<MatchInfo> matchInfos;
+        private List<MatchSummary> matchSummaries;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
     @Builder
-    public static class MatchInfo {
-        @JsonProperty("day")
-        private String day;
-
-        @JsonProperty("time")
-        private String time;
+    public static class MatchSummary {
+        @JsonProperty("startDateTime")
+        private String startDateTime;
 
         @JsonProperty("awayTeam")
         private String awayTeam;
@@ -48,4 +45,25 @@ public class GameResponse {
         @JsonProperty("note")
         private String note;
     }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class GetMatchDetail {
+        private String season;
+        private LocalDateTime startDateTime;
+        private String place;
+        private String gameStatus;
+        private String homeTeam;
+        private String awayTeam;
+        private List<String> homeScores;
+        private List<String> awayScores;
+        private List<String> homeRHEB;
+        private List<String> awayRHEB;
+        private String homeScore;
+        private String awayScore;
+    }
+
+
 }

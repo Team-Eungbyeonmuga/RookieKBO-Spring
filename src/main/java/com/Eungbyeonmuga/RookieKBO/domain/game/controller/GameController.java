@@ -18,9 +18,9 @@ public class GameController {
     private final GameService gameService;
 
     @PostMapping("/get-matches")
-    public BaseResponse<GameResponse.GetMatches> getMatches(
+    public BaseResponse<GameResponse.GetMatchesByYearAndMonth> getMatches(
             @RequestBody GameRequest.GetMatches request
             ) {
-        return BaseResponse.onSuccess(gameService.getMatchesByYearAndMonthAndSeason(request.getYear(), request.getMonth(), request.getSeason()));
+        return BaseResponse.onSuccess(gameService.getMatchesByYearAndMonth(request.getYear(), request.getMonth()));
     }
 }

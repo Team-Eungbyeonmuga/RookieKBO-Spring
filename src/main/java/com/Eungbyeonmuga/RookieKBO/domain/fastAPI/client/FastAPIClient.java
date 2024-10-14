@@ -19,7 +19,7 @@ import java.util.List;
 )
 
 public interface FastAPIClient {
-    @PostMapping(value = "/matches")
+    @PostMapping(value = "/matches/all-season")
     public FastAPIResponse.GetMatches getMatches(
             @RequestBody FastAPIRequest.GetMatches request
             );

@@ -17,7 +17,7 @@ public class GameTeam extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_meeting_id")
+    @Column(name = "game_team_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

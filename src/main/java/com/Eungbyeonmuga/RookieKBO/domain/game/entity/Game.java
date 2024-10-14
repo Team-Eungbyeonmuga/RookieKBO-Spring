@@ -31,17 +31,23 @@ public class Game extends BaseEntity {
     @Builder.Default
     private List<Score> AwayScores = new ArrayList<>();
 
+    private Integer homeScore;
+
+    private Integer awayScore;
+
     private Inning inning;
 
     @Column(nullable = false)
     private Season season;
 
-//    @Column(nullable = false)
-//    private Status status;
+    @Column(nullable = false)
+    private Status status;
 
     @Column(nullable = false)
     private LocalDateTime startDateTime;
 
     @Column(nullable = false)
     private String place;
+
+    private String note;
 }

@@ -23,7 +23,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     List<Game> findGamesByStartDateTimeAndSeason(LocalDateTime startDateTime, Season season);
 
     @Query("SELECT g FROM Game g " +
-            "WHERE FUNCTION('DATE', g.startDateTime) = FUNCTION('DATE', :startDate) " +
-            "AND g.season = :season")
-    List<Game> findByStartDateAndSeason(LocalDateTime startDate, Season season);
+            "WHERE FUNCTION('DATE', g.startDateTime) = FUNCTION('DATE', :startDate) ")
+    List<Game> findByStartDate(LocalDateTime startDate);
+
 }

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum Status {
     PREPARING("경기 준비"),
     DURING("경기 중"),
-    OVER("경기 준비");
+    OVER("경기 종료"),
+    CANCEL("취소");
     private final String toKorean;
 }
