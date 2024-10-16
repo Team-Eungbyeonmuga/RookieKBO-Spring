@@ -11,7 +11,7 @@ public class FastAPIRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class GetMatches {
+    public static class GetGames {
         private Integer year;
         private Integer month;
     }
@@ -20,7 +20,7 @@ public class FastAPIRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class GetMatchSummariesOnCalendar {
+    public static class GetGameSummariesOnCalendar {
         private Integer year;
         private Integer month;
     }

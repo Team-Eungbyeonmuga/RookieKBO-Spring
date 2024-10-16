@@ -3,14 +3,9 @@ package com.Eungbyeonmuga.RookieKBO.domain.fastAPI.client;
 import com.Eungbyeonmuga.RookieKBO.config.FeignConfig;
 import com.Eungbyeonmuga.RookieKBO.domain.fastAPI.dto.FastAPIRequest;
 import com.Eungbyeonmuga.RookieKBO.domain.fastAPI.dto.FastAPIResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @FeignClient(
         name = "FastAPIClient",
@@ -19,14 +14,14 @@ import java.util.List;
 )
 
 public interface FastAPIClient {
-    @PostMapping(value = "/matches/all-season")
-    public FastAPIResponse.GetMatches getMatches(
-            @RequestBody FastAPIRequest.GetMatches request
+    @PostMapping(value = "/games/all-season")
+    public FastAPIResponse.GetGames getGames(
+            @RequestBody FastAPIRequest.GetGames request
             );
 
-    @PostMapping(value = "/matches/calendar/all-season")
-    public FastAPIResponse.GetMatchSummariesOnCalendar getMatchSummariesOnCalendar(
-            @RequestBody FastAPIRequest.GetMatchSummariesOnCalendar request
+    @PostMapping(value = "/games/calendar/all-season")
+    public FastAPIResponse.GetGameSummariesOnCalendar getGameSummariesOnCalendar(
+            @RequestBody FastAPIRequest.GetGameSummariesOnCalendar request
     );
 
 }

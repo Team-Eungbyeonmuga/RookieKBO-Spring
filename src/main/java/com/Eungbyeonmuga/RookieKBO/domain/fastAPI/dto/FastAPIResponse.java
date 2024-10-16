@@ -12,18 +12,18 @@ public class FastAPIResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class GetMatches {
-        @JsonProperty("matchSummariesInRegularSeason")
-        private List<MatchSummary> matchSummariesInRegularSeason;
+    public static class GetGames {
+        @JsonProperty("gameSummariesInRegularSeason")
+        private List<GameSummary> gameSummariesInRegularSeason;
 
-        @JsonProperty("matchSummariesInPostSeason")
-        private List<MatchSummary> matchSummariesInPostSeason;
+        @JsonProperty("gameSummariesInPostSeason")
+        private List<GameSummary> gameSummariesInPostSeason;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class MatchSummary {
+    public static class GameSummary {
         @JsonProperty("date")
         private String date;
 
@@ -52,18 +52,18 @@ public class FastAPIResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class GetMatchSummariesOnCalendar {
-        @JsonProperty("matchSummariesOnCalendarInRegularSeason")
-        private List<MatchSummaryOnCalendar> matchSummariesOnCalendarInRegularSeason;
+    public static class GetGameSummariesOnCalendar {
+        @JsonProperty("gameSummariesOnCalendarInRegularSeason")
+        private List<GameSummaryOnCalendar> gameSummariesOnCalendarInRegularSeason;
 
-        @JsonProperty("matchSummariesOnCalendarInPostSeason")
-        private List<MatchSummaryOnCalendar> matchSummariesOnCalendarInPostSeason;
+        @JsonProperty("gameSummariesOnCalendarInPostSeason")
+        private List<GameSummaryOnCalendar> gameSummariesOnCalendarInPostSeason;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
-    public static class MatchSummaryOnCalendar {
+    public static class GameSummaryOnCalendar {
         @JsonProperty("date")
         private String date;
 

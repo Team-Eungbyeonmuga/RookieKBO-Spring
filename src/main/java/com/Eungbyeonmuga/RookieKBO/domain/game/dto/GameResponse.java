@@ -14,16 +14,16 @@ public class GameResponse {
     @AllArgsConstructor
     @Data
     @Builder
-    public static class GetMatchesByYearAndMonth {
-        @JsonProperty("matchInfos")
-        private List<MatchSummary> matchSummaries;
+    public static class GetGamesByYearAndMonth {
+        @JsonProperty("gameInfos")
+        private List<GameSummary> gameSummaries;
     }
 
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
     @Builder
-    public static class MatchSummary {
+    public static class GameSummary {
         @JsonProperty("startDateTime")
         private String startDateTime;
 
@@ -50,7 +50,7 @@ public class GameResponse {
     @AllArgsConstructor
     @Data
     @Builder
-    public static class GetMatchDetail {
+    public static class GetGameDetail {
         private String season;
         private LocalDateTime startDateTime;
         private String place;
@@ -91,5 +91,23 @@ public class GameResponse {
         private List<Integer> awayRHEB;
         private Integer homeScore;
         private Integer awayScore;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class UpdateGamesDetailByDate {
+        private String test;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class GameDetails {
+        private String test;
+
+
     }
 }

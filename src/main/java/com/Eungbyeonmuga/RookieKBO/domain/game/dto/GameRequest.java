@@ -10,7 +10,7 @@ public class GameRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class GetMatches {
+    public static class GetGames {
         private Integer year;
         private Integer month;
     }
@@ -21,5 +21,15 @@ public class GameRequest {
     @Getter
     public static class GetGamesByDate {
         private String date;
+    }
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class UpdateGamesDetailByDate {
+        private Integer year;
+        private Integer month;
+        private Integer day;
     }
 }
