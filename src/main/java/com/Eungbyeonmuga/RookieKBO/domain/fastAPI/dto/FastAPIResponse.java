@@ -112,16 +112,16 @@ public class FastAPIResponse {
         private String gameStatus;
 
         @JsonProperty("awayScores")
-        private List<String> awayScores;
+        private List<Integer> awayScores;
 
         @JsonProperty("homeScores")
-        private List<String> homeScores;
+        private List<Integer> homeScores;
 
         @JsonProperty("awayRHEB")
-        private List<String> awayRHEB;
+        private List<Integer> awayRHEB;
 
         @JsonProperty("homeRHEB")
-        private List<String> homeRHEB;
+        private List<Integer> homeRHEB;
 
         @JsonProperty("season")
         private String season;

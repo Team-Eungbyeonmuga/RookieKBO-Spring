@@ -15,10 +15,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     @Query("SELECT g FROM Game g " +
             "LEFT JOIN GameTeam gtHome ON g.id = gtHome.game.id AND gtHome.homeAway = com.Eungbyeonmuga.RookieKBO.domain.gameTeam.entity.HomeAway.HOME " +
             "LEFT JOIN GameTeam gtAway ON g.id = gtAway.game.id AND gtAway.homeAway = com.Eungbyeonmuga.RookieKBO.domain.gameTeam.entity.HomeAway.AWAY " +
-            "WHERE g.startDateTime = :startDateTime " +
+            "WHERE FUNCTION('DATE', g.startDateTime) = :startDateTime " +
             "AND (gtHome.team.name = :homeTeam OR gtHome.team IS NULL) " +
             "AND (gtAway.team.name = :awayTeam OR gtAway.team IS NULL)")
-    List<Game> findByStartDateTimeAndTeams(LocalDateTime startDateTime, String homeTeam, String awayTeam);
+    Game findByStartDateTimeAndTeams(LocalDateTime startDateTime, String homeTeam, String awayTeam);
 
     List<Game> findGamesByStartDateTimeAndSeason(LocalDateTime startDateTime, Season season);
 

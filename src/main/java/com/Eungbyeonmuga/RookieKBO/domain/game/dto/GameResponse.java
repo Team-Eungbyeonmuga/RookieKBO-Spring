@@ -98,7 +98,7 @@ public class GameResponse {
     @Data
     @Builder
     public static class UpdateGamesDetailByDate {
-        private String test;
+        private String resultMessage;
     }
 
     @NoArgsConstructor

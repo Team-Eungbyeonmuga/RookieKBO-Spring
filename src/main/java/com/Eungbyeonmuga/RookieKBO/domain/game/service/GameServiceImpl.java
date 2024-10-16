@@ -150,7 +150,7 @@ public class GameServiceImpl implements GameService {
             gameTeamService.createGameTeam(newGame, homeTeam, awayTeam);
         }
         // 포스트 시즌 생성
-        for (FastAPIResponse.GameSummaryOnCalendar gameSummaryOnCalendar : gameSummariesOnCalendar.getGameSummariesOnCalendarInRegularSeason()) {
+        for (FastAPIResponse.GameSummaryOnCalendar gameSummaryOnCalendar : gameSummariesOnCalendar.getGameSummariesOnCalendarInPostSeason()) {
             System.out.println(gameSummaryOnCalendar);
 
             String stadium = teamService.findTeamByName(gameSummaryOnCalendar.getHomeTeam()).getStadium();
@@ -205,6 +205,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public GameResponse.UpdateGamesDetailByDate updateGamesDetailByDate(Integer year, Integer month, Integer day) {
 
         FastAPIRequest.GetGameDetailByDate request = FastAPIRequest.GetGameDetailByDate.builder()
@@ -215,10 +216,28 @@ public class GameServiceImpl implements GameService {
 
         FastAPIResponse.GetGameDetailByDate getGameDetailByDate = fastAPIClient.getGameDetailByDate(request);
 
+        for (FastAPIResponse.GameDetail gameDetail : getGameDetailByDate.getGameDetails()) {
 
+            Game game = gameRepository.findByStartDateTimeAndTeams(LocalDateTime.parse(gameDetail.getStartDateTime()), gameDetail.getHomeTeam(), gameDetail.getAwayTeam());
+            System.out.println(game);
+            if (game == null) {
+                return GameResponse.UpdateGamesDetailByDate.builder()
+                        .resultMessage("기본 경기 데이터가 없습니다. 월 단위 경기 기본 데이터를 생성한 후 다시 호출하세요.")
+                        .build();
+            }
+
+            game.updateHomeScores(gameDetail.getHomeScores());
+            game.updateAwayScores(gameDetail.getAwayScores());
+            game.updateHomeRHEB(gameDetail.getHomeRHEB());
+            game.updateAwayRHEB(gameDetail.getAwayRHEB());
+            game.updateStatus(Status.fromKorean(gameDetail.getGameStatus()));
+            game.updateStartDateTime(LocalDateTime.parse(gameDetail.getStartDateTime()));
+        }
 
         System.out.println(getGameDetailByDate);
-        return null;
+        return GameResponse.UpdateGamesDetailByDate.builder()
+                .resultMessage("데이터 업데이트 성공")
+                .build();
     }
 
     @Override
