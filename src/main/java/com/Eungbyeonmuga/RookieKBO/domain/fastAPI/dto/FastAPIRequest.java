@@ -24,4 +24,14 @@ public class FastAPIRequest {
         private Integer year;
         private Integer month;
     }
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class GetGameDetailByDate {
+        private Integer year;
+        private Integer month;
+        private Integer day;
+    }
 }

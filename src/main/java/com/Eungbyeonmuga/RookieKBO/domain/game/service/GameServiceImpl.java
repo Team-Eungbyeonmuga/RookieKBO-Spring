@@ -206,6 +206,18 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameResponse.UpdateGamesDetailByDate updateGamesDetailByDate(Integer year, Integer month, Integer day) {
+
+        FastAPIRequest.GetGameDetailByDate request = FastAPIRequest.GetGameDetailByDate.builder()
+                .year(year)
+                .month(month)
+                .day(day)
+                .build();
+
+        FastAPIResponse.GetGameDetailByDate getGameDetailByDate = fastAPIClient.getGameDetailByDate(request);
+
+
+
+        System.out.println(getGameDetailByDate);
         return null;
     }
 

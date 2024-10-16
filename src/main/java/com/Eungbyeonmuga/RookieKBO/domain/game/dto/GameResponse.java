@@ -106,8 +106,15 @@ public class GameResponse {
     @Data
     @Builder
     public static class GameDetails {
-        private String test;
-
-
+        private String startDateTime;
+        private String awayTeam;
+        private String homeTeam;
+        private String gameStatus;
+        private List<Integer> homeScores;
+        private List<Integer> awayScores;
+        private List<Integer> homeRHEB;
+        private List<Integer> awayRHEB;
+        private String season;
+        private String place;
     }
 }

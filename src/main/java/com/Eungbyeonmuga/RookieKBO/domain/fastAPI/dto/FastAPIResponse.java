@@ -87,4 +87,48 @@ public class FastAPIResponse {
     }
 
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GetGameDetailByDate {
+        @JsonProperty("gameDetails")
+        private List<GameDetail> gameDetails;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GameDetail {
+        @JsonProperty("startDateTime")
+        private String startDateTime;
+
+        @JsonProperty("awayTeam")
+        private String awayTeam;
+
+        @JsonProperty("homeTeam")
+        private String homeTeam;
+
+        @JsonProperty("gameStatus")
+        private String gameStatus;
+
+        @JsonProperty("awayScores")
+        private List<String> awayScores;
+
+        @JsonProperty("homeScores")
+        private List<String> homeScores;
+
+        @JsonProperty("awayRHEB")
+        private List<String> awayRHEB;
+
+        @JsonProperty("homeRHEB")
+        private List<String> homeRHEB;
+
+        @JsonProperty("season")
+        private String season;
+
+        @JsonProperty("place")
+        private String place;
+    }
+
+
 }

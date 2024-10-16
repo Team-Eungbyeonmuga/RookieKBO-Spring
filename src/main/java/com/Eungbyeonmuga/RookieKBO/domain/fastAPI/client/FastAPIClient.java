@@ -24,4 +24,9 @@ public interface FastAPIClient {
             @RequestBody FastAPIRequest.GetGameSummariesOnCalendar request
     );
 
+    @PostMapping(value = "/games/detail")
+    public FastAPIResponse.GetGameDetailByDate getGameDetailByDate(
+            @RequestBody FastAPIRequest.GetGameDetailByDate request
+    );
+
 }
