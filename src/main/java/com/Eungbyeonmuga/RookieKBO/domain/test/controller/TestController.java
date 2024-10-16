@@ -1,6 +1,6 @@
 package com.Eungbyeonmuga.RookieKBO.domain.test.controller;
 
-import com.Eungbyeonmuga.RookieKBO.global.BaseResponse;
+import com.Eungbyeonmuga.RookieKBO.global.common.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
