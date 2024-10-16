@@ -14,7 +14,7 @@ public class GameResponse {
     @AllArgsConstructor
     @Data
     @Builder
-    public static class GetGamesByYearAndMonth {
+    public static class CreateGameBaseInfoForMonthUsingFastAPI {
         @JsonProperty("gameInfos")
         private List<GameSummary> gameSummaries;
     }

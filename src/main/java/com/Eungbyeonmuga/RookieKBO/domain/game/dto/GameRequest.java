@@ -10,7 +10,7 @@ public class GameRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class GetGames {
+    public static class CreateGameBaseInfoForMonthUsingFastAPI {
         private Integer year;
         private Integer month;
     }

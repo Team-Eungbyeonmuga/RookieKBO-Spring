@@ -16,20 +16,6 @@ public class GameController {
 
     private final GameService gameService;
 
-    @PostMapping("/get-games")
-    public BaseResponse<GameResponse.GetGamesByYearAndMonth> getGames(
-            @RequestBody GameRequest.GetGames request
-            ) {
-        return BaseResponse.onSuccess(gameService.createGameBaseInfoForMonthFromKBOList(request.getYear(), request.getMonth()));
-    }
-
-    @PostMapping("/get-games/calendar")
-    public BaseResponse<GameResponse.GetGamesByYearAndMonth> getGameSummariesOnCalendar(
-            @RequestBody GameRequest.GetGames request
-    ) {
-        return BaseResponse.onSuccess(gameService.createGameBaseInfoForMonthFromKBOCalendar(request.getYear(), request.getMonth()));
-    }
-
     @PostMapping
     public BaseResponse<GameResponse.GetGamesByDate> getGamesByDate(
             @RequestBody GameRequest.GetGamesByDate request
@@ -37,12 +23,6 @@ public class GameController {
         return BaseResponse.onSuccess(gameService.getGamesByDate(request.getDate()));
     }
 
-    @PostMapping("/update/detail")
-    public BaseResponse<GameResponse.UpdateGamesDetailByDate> updateGamesDetailByDate(
-            @RequestBody GameRequest.UpdateGamesDetailByDate request
-    ) {
-        return BaseResponse.onSuccess(gameService.updateGamesDetailByDate(request.getYear(), request.getMonth(), request.getDay()));
-    }
 
     @GetMapping("/get-scores-test")
     public BaseResponse<List<Integer>> getScoresTest() {
