@@ -1,6 +1,5 @@
 package com.Eungbyeonmuga.RookieKBO.domain.game.entity;
 
-import com.Eungbyeonmuga.RookieKBO.domain.score.entity.Score;
 import com.Eungbyeonmuga.RookieKBO.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,19 +22,25 @@ public class Game extends BaseEntity {
     @Column(name = "game_id")
     private Long id;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
-    private List<Score> homeScores = new ArrayList<>();
+    @CollectionTable(name = "score", joinColumns = @JoinColumn(name = "game_id"))
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<Integer> homeScores = new ArrayList<>();
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
-    private List<Score> AwayScores = new ArrayList<>();
+    @CollectionTable(name = "score", joinColumns = @JoinColumn(name = "game_id"))
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<Integer> awayScores = new ArrayList<>();
 
-    private Integer homeScore;
+    @Builder.Default
+    @CollectionTable(name = "score", joinColumns = @JoinColumn(name = "game_id"))
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<Integer> homeRHEB = new ArrayList<>();
 
-    private Integer awayScore;
-
-    private Inning inning;
+    @Builder.Default
+    @CollectionTable(name = "score", joinColumns = @JoinColumn(name = "game_id"))
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<Integer> awayRHEB = new ArrayList<>();
 
     @Column(nullable = false)
     private Season season;

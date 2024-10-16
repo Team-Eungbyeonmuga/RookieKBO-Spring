@@ -66,4 +66,30 @@ public class GameResponse {
     }
 
 
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class GetGamesByDate {
+        private List<GameInfo> gameInfos;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class GameInfo {
+        private String season;
+        private LocalDateTime startDateTime;
+        private String place;
+        private String gameStatus;
+        private String homeTeam;
+        private String awayTeam;
+        private List<Integer> homeScores;
+        private List<Integer> awayScores;
+        private List<Integer> homeRHEB;
+        private List<Integer> awayRHEB;
+        private Integer homeScore;
+        private Integer awayScore;
+    }
 }

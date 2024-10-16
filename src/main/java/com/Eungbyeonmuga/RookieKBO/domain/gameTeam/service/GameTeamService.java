@@ -10,4 +10,6 @@ import java.util.List;
 public interface GameTeamService {
     @Transactional
     List<GameTeam> createGameTeam(Game game, Team home, Team away);
+
+    List<GameTeam> findGameTeamsByGame(Game game);
 }

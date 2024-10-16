@@ -5,10 +5,9 @@ import com.Eungbyeonmuga.RookieKBO.domain.game.dto.GameResponse;
 import com.Eungbyeonmuga.RookieKBO.domain.game.service.GameService;
 import com.Eungbyeonmuga.RookieKBO.global.common.BaseResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,13 +20,25 @@ public class GameController {
     public BaseResponse<GameResponse.GetMatchesByYearAndMonth> getMatches(
             @RequestBody GameRequest.GetMatches request
             ) {
-        return BaseResponse.onSuccess(gameService.getMatchesByYearAndMonth(request.getYear(), request.getMonth()));
+        return BaseResponse.onSuccess(gameService.createGameBaseInfoForMonthFromKBOList(request.getYear(), request.getMonth()));
     }
 
     @PostMapping("/get-matches/calendar")
     public BaseResponse<GameResponse.GetMatchesByYearAndMonth> getMatchSummariesOnCalendar(
             @RequestBody GameRequest.GetMatches request
     ) {
-        return BaseResponse.onSuccess(gameService.getMatchSummariesOnCalendar(request.getYear(), request.getMonth()));
+        return BaseResponse.onSuccess(gameService.createGameBaseInfoForMonthFromKBOCalendar(request.getYear(), request.getMonth()));
+    }
+
+    @PostMapping
+    public BaseResponse<GameResponse.GetGamesByDate> getGamesByDate(
+            @RequestBody GameRequest.GetGamesByDate request
+    ) {
+        return BaseResponse.onSuccess(gameService.getGamesByDate(request.getDate()));
+    }
+
+    @GetMapping("/get-scores-test")
+    public BaseResponse<List<Integer>> getScoresTest() {
+        return BaseResponse.onSuccess(gameService.getScoresTest());
     }
 }

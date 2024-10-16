@@ -14,4 +14,12 @@ public class GameRequest {
         private Integer year;
         private Integer month;
     }
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class GetGamesByDate {
+        private String date;
+    }
 }

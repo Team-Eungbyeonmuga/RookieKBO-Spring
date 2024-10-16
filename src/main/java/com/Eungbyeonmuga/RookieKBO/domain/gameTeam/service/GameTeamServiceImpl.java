@@ -31,4 +31,9 @@ public class GameTeamServiceImpl implements GameTeamService {
         gameTeamRepository.saveAll(gameTeams);
         return gameTeams;
     }
+
+    @Override
+    public List<GameTeam> findGameTeamsByGame(Game game) {
+        return gameTeamRepository.findGameTeamsByGame(game);
+    }
 }
