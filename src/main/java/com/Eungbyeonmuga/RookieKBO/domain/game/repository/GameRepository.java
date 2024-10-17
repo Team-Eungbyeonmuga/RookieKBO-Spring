@@ -18,7 +18,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
             "WHERE FUNCTION('DATE', g.startDateTime) = :startDateTime " +
             "AND (gtHome.team.name = :homeTeam OR gtHome.team IS NULL) " +
             "AND (gtAway.team.name = :awayTeam OR gtAway.team IS NULL)")
-    Game findByStartDateTimeAndTeams(LocalDateTime startDateTime, String homeTeam, String awayTeam);
+    List<Game> findByStartDateTimeAndTeams(LocalDateTime startDateTime, String homeTeam, String awayTeam);
 
     List<Game> findGamesByStartDateTimeAndSeason(LocalDateTime startDateTime, Season season);
 
