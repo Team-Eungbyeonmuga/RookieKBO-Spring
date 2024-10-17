@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
         name = "FastAPIClient",
-        url = "http://localhost:8000",
+        // TODO: Local/Dev 환경에서 url 서로 바꿔줘야함. 추후에 FastAPI 도커로 옮겨서 Spring과 같은 네트워크 사용하게 수정할 것.
+        url = "http://rookiekbo.store:8000",
         configuration = FeignConfig.class
 )
 
