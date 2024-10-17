@@ -188,7 +188,11 @@ public class FastAPIServiceImpl implements FastAPIService {
 
         for (FastAPIResponse.GameDetail gameDetail : getGameDetailByDate.getGameDetails()) {
 
-            Game game = gameRepository.findByStartDateTimeAndTeams(LocalDateTime.parse(gameDetail.getStartDateTime()), gameDetail.getHomeTeam(), gameDetail.getAwayTeam());
+            List<Game> games = gameRepository.findByStartDateTimeAndTeams(LocalDateTime.parse(gameDetail.getStartDateTime()), gameDetail.getHomeTeam(), gameDetail.getAwayTeam());
+            Game game = null;
+            if (!games.isEmpty()) {
+                game = games.get(0);
+            }
             System.out.println(game);
             if (game == null) {
                 return GameResponse.UpdateGamesDetailByDate.builder()
